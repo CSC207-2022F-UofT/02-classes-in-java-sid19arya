@@ -72,6 +72,7 @@ public class Silly implements Comparable<Silly>{
         this.name = "Silly #" + number;
     }
 
+    public Silly(String first, String second) {this.name = first + second;}
     /**
      * TODO (Task 1): Create another constructor that takes in TWO parameters,
      *       both of which are strings.
@@ -116,7 +117,7 @@ public class Silly implements Comparable<Silly>{
         y.countStatic();
         x.countStatic();
         x.countStatic();
-        int[] expected_values = {};
+        int[] expected_values = {0, 1, 2, 3};
 
         System.out.println("The countStatic calls will return " + Arrays.toString(expected_values));
     }
@@ -133,6 +134,7 @@ public class Silly implements Comparable<Silly>{
      */
     @Override
     public String toString(){
+        return this.name;
         // TODO (Task 3): Implement the body of this method!
     }
 
@@ -158,7 +160,7 @@ public class Silly implements Comparable<Silly>{
         }
 
         Silly other = (Silly) o; // To access .name of o, we need to cast it.
-
+        return this.toString().equals(o.toString());
         // Hint: to compare strings, we need to use .equals()
         //       e.g. s1.equals(s2)
     }
@@ -185,6 +187,19 @@ public class Silly implements Comparable<Silly>{
      */
     @Override
     public int compareTo(Silly other) {
+
+        int my_length = this.toString().length();
+        int other_length = other.toString().length();
+
+        if (my_length < other_length){
+            return -1;
+        } else if (my_length > other_length) {
+            return 1;
+        } else {
+            return 0;
+        }
+
+
         /**
          * TODO (Task 5): Implement the body of this method.
          *                A positive number should be returned if this.name
